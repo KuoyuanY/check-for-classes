@@ -40,9 +40,9 @@ while keepRunning:
             notify("a seated opened up!")
             keepRunning = False #stops the bot from running
 
-    print("after a minute, ")
+    print("It's been a minute")
     time.sleep(60)#checks for open seats every 30 seconds
     if currentTime-initialTime > 14400: #messages the user that bot is still running after every 6 hours
         initialTime = round(time.clock())
         notify("It's been 4 hours, bot is still checking for seats")
-notify("If you didn't get a message saying a seat opened up, the bot quit unexpectedly, contact Kuoyuan")
+notify("The script ended")
