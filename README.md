@@ -1,9 +1,9 @@
 # check-for-classes
-script that checks if a class opens up on Testudo.umd.edu, when a seat is open, script will text phone
+Script that checks if a class opens up on Testudo.umd.edu, when a seat is open, script will text phone
 
 ### Description
-parse2.py is for python 2
-parse.py is for python 3
+The file parse2.py is for python 2
+The file parse.py is for python 3
 
 ### Set up 
 Get a free twilio account at https://www.twilio.com/try-twilio
