@@ -3,10 +3,10 @@ import urllib2
 import re
 import time
 
-Account_SID = "AC1f69d9aec41078d92c980931836976d7"
-Auth_TOKEN = "071d9c8931b98740a2ac896bb00b333c"
-myTwilioNumber = "+16674014463"
-myNumber = "+14436769868"
+Account_SID = ""
+Auth_TOKEN = ""
+myTwilioNumber = ""
+myNumber = ""
 initialTime = round(time.clock())
 keepRunning = True
 
