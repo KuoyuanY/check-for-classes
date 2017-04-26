@@ -20,7 +20,7 @@ def notify(message): #texts me with message
     )
 
 url = "https://ntst.umd.edu/soc/search?courseId=HIST289y&sectionId=&termId=201708&_openSectionsOnly=on&creditCompare=&credits=&courseLevelFilter=ALL&instructor=&_facetoface=on&_blended=on&_online=on&courseStartCompare=&courseStartHour=&courseStartMin=&courseStartAM=&courseEndHour=&courseEndMin=&courseEndAM=&teachingCenter=ALL&_classDay1=on&_classDay2=on&_classDay3=on&_classDay4=on&_classDay5=on"
-sections = {'0': '0'} #dictionary of sections
+sections = {'0': '12'} #dictionary of sections
 
 
 print("started running")
@@ -33,14 +33,14 @@ while keepRunning:
 
     counter = 1
 
-    for m in re.finditer('<span class="open-seats-count">', html): #finds all occurrences
+    for m in re.finditer('<span class="total-seats-count">', html): #finds all occurrences
         sections[counter] = html[m.end()] #put in dictionary
         counter+=1
 
     for k, v in sections.items():
         print time.asctime(time.localtime(time.time())) #prints current time
         print(str(k) + "section:" + str(v)) #prints each section
-        if not v == '0':
+        if not v == '12':
             notify("a seated opened up in section " + str(k))
             keepRunning = False #stops the bot from running
 

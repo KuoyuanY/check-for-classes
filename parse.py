@@ -20,29 +20,35 @@ def notify(message): #texts me with message
     )
 
 url = "https://ntst.umd.edu/soc/search?courseId=HIST289y&sectionId=&termId=201708&_openSectionsOnly=on&creditCompare=&credits=&courseLevelFilter=ALL&instructor=&_facetoface=on&_blended=on&_online=on&courseStartCompare=&courseStartHour=&courseStartMin=&courseStartAM=&courseEndHour=&courseEndMin=&courseEndAM=&teachingCenter=ALL&_classDay1=on&_classDay2=on&_classDay3=on&_classDay4=on&_classDay5=on"
-sections = {'0': '0'} #dictionary of sections
+sections = {'0': '12'} #dictionary of sections
 
-response = urllib.request.urlopen(url)
-html = response.read()
-html = html.decode("utf8")
+
+print("started running")
 
 #regex to find all sections
 while keepRunning:
-    currentTime = round(time.clock())
+    response = urllib.request.urlopen(url)
+    html = response.read()
+    html = html.decode("utf8")
+
     counter = 1
 
-    for m in re.finditer('<span class="open-seats-count">', html): #finds all occurrences
+    for m in re.finditer('<span class="total-seats-count">', html): #finds all occurrences
         sections[counter] = html[m.end()] #put in dictionary
         counter+=1
 
     for k, v in sections.items():
-        if not v == '0':
-            notify("a seated opened up!")
+        print time.asctime(time.localtime(time.time())) #prints current time
+        print(str(k) + "section:" + str(v)) #prints each section
+        if not v == '12':
+            notify("a seated opened up in section " + str(k))
             keepRunning = False #stops the bot from running
 
-    print("It's been a minute")
+
     time.sleep(60)#checks for open seats every 30 seconds
-    if currentTime-initialTime > 14400: #messages the user that bot is still running after every 6 hours
+    print("It's been a minute")
+    currentTime = round(time.clock())
+    if currentTime-initialTime >= 14400: #messages the user that bot is still running after every 4 hours
         initialTime = round(time.clock())
         notify("It's been 4 hours, bot is still checking for seats")
 notify("The script ended")
