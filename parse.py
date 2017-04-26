@@ -34,13 +34,13 @@ while keepRunning:
     counter = 1
 
     for m in re.finditer('<span class="total-seats-count">', html): #finds all occurrences
-        sections[counter] = html[m.end()] #put in dictionary
+        sections[counter] = html[m.end()+1] #put in dictionary
         counter+=1
 
     for k, v in sections.items():
         print time.asctime(time.localtime(time.time())) #prints current time
-        print(str(k) + "section:" + str(v)) #prints each section
-        if not v == '12':
+        print("section " + str(k) + ": " + str(v)) #prints each section
+        if not v == '2':
             notify("a seated opened up in section " + str(k))
             keepRunning = False #stops the bot from running
 
