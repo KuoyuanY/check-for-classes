@@ -27,7 +27,11 @@ print("started running")
 
 #regex to find all sections
 while keepRunning:
-    response = urllib2.urlopen(url)
+
+    try:
+        response = urllib2.urlopen(url)
+    except urllib2.HTTPError:
+        pass
     html = response.read()
     html = html.decode("utf8")
 
